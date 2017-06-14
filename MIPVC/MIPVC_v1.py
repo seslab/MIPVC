@@ -22,7 +22,7 @@ from urllib2 import urlopen
 import glob ##### para buscar los puertos USB disponibles
 #from controlTektronix import *
 import tkFileDialog
-from fft_medicionv1_4 import *
+from EnergyQ import *
 
 def main():
 	xgrid=30;
