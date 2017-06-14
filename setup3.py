@@ -27,7 +27,7 @@ setup(
     author = 'Javier Campos Rojas',
     author_email = 'nautilus28c@gmail.com	',
     url = 'http://www.ie.tec.ac.cr/seslab/',
-    download_url = 'https://github.com/seslab/MIPVC/tarball/master/ControlTektronix',
+    download_url = 'https://github.com/seslab/MIPVC/tree/master/ControlTektronix',
     keywords = 'USB SCPI Kepco Serial SESLab Source Fuentes',
     license = 'Licencia ITCR',
     classifiers=[
@@ -44,5 +44,5 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3'
         ],
-    packages = , find_packages()
+    packages = find_packages()
 )

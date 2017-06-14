@@ -13,7 +13,7 @@
 import serial
 import numpy as np
 import time
-from HarmGenv3 import *
+from HarmGen import *
 
 class Source:
 	def __init__(self, name, port):
