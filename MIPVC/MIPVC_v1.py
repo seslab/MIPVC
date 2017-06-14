@@ -77,14 +77,14 @@ def main():
 	while not Salir.clicked(pt):
 
 		if Fuentes.clicked(pt):
-			execfile('KepcoGestionControl_v2.py')
+			execfile('KepcoGestionControl.py')
 			
 		if caracterizar.clicked(pt):
 			mensaje.setText("Ejecutando rutina de caracterización...")
-			execfile('caracterizarv0_1.py')
+			execfile('caracterizar.py')
 			mensaje.setText("¡Listo!")
 		if CalidadE.clicked(pt):
-			execfile('fft_file_osc2.py')
+			execfile('Analizador.py')
 
 		pt = win.getMouse()
 	win.close()
