@@ -44,5 +44,5 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3'
         ],
-    packages = find_packages(exclude=['SerialKepco', 'HarmGen']))
+    packages = find_packages(exclude=['SerialKepco', 'HarmGen'])
 )
