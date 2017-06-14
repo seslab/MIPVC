@@ -7,9 +7,9 @@ from __future__ import with_statement
 # http://docs.python.org/distutils/
 # http://packages.python.org/distribute/
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except:
-    from distutils.core import setup
+    from distutils.core import setup, find_packages
 
 import os.path
 
@@ -27,7 +27,7 @@ setup(
     author = 'Javier Campos Rojas',
     author_email = 'nautilus28c@gmail.com	',
     url = 'http://www.ie.tec.ac.cr/seslab/',
-    download_url = 'https://github.com/seslab/MIPVC/tree/master/HarmGen',
+    download_url = 'https://github.com/seslab/MIPVC/tarball/master/HarmGen',
     keywords = 'USB SCPI Kepco Serial SESLab Source Fuentes',
     license = 'Licencia ITCR',
     classifiers=[
@@ -44,5 +44,5 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3'
         ],
-    packages = ['HarmGen']
+    packages = find_packages()
 )
