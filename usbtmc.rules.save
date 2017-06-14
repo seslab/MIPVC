@@ -1,0 +1,3 @@
+ # USBTMC instruments
+# Bus 001 Device 006: ID 0699:0366 Tektronix, Inc.
+SUBSYSTEMS==”usb”, ACTION==”add”, ATTRS{idVendor}==”0699″, ATTRS{idProduct}==”0366″, GROUP=”usbtmc”, MODE=”0660″
