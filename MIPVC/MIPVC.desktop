@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=MIPVC
+Comment=Aplicacion para caracterizacion y control de Fuentes
+Icon=/home/MIPVC/MIPVC/MIPVC.xpm
+Exec=python /home/MIPVC/MIPVC/MIPVC_v1.py
+Type=Application
+Terminal=true
+Categories=None;
+X-KeepTerminal=false
+Path=/home/MIPVC/MIPVC
