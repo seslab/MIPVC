@@ -58,9 +58,11 @@ def main():
 	Fuentes.activate()
 	caracterizar = Button(win, Point(refx+7,refy), width_b, heigh_b, "Caracterización")
 	caracterizar.activate()
-	CalidadE = Button(win, Point(refx-7,refy-8), width_b, heigh_b, "Calidad de Energía")
+	CalidadE = Button(win, Point(refx-7,refy-6), width_b, heigh_b, "Calidad de Energía")
 	CalidadE.activate()
-	Salir = Button(win, Point(refx+7,refy-8), width_b, heigh_b, "Salir")
+	VoltSweep = Button(win, Point(refx+7,refy-6), width_b, heigh_b, "Barrido de Tensión")
+	VoltSweep.activate()
+	Salir = Button(win, Point(refx,refy-12), width_b, heigh_b, "Salir")
 	Salir.activate()
 	
 		################## Mensaje de lectura ##################
@@ -85,6 +87,9 @@ def main():
 			mensaje.setText("¡Listo!")
 		if CalidadE.clicked(pt):
 			execfile('Analizador.py')
+			
+		if VoltSweep.clicked(pt):
+			execfile('VoltSweep.py')
 
 		pt = win.getMouse()
 	win.close()

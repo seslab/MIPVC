@@ -25,9 +25,9 @@ import glob ##### para buscar los puertos USB disponibles
 global SK
 
 def main():
-	xgrid=30;
+	xgrid=35;
 	ygrid=10;
-	refy=19;
+	refy=23;
 	refx=2;
 	refx2=11;
 	width_b=2.5;
@@ -44,12 +44,12 @@ def main():
 		puerto2 = 'no hay dispositivo'
 
 		
-	win = GraphWin("v2 Sweep",width=400, height=375)
+	win = GraphWin("Volt Sweep",width=400, height=400)
 	win.setCoords(0,0,ygrid,xgrid)
 	#win.setBackground('#BCC6CC')
 	myImage = Image(Point(5,15), 'backg2.gif')
 	myImage.draw(win)
-	LogoSESLab = Image(Point(5,27), 'SESLab.gif')
+	LogoSESLab = Image(Point(5,refy+8), 'SESLab.gif')
 	LogoSESLab.draw(win)
 
 
@@ -181,7 +181,7 @@ def main():
 	port1_val.draw(win)
 
 		################## Mensaje de lectura ##################
-	mensaje=Text(Point(5,5),"")
+	mensaje=Text(Point(5,refy-20),"")
 	mensaje.setFace('arial')
 	mensaje.setStyle('bold')
 	mensaje.setSize(11)
@@ -189,17 +189,13 @@ def main():
 	mensaje.draw(win)
 	
 	def rutinaDeltaV(vi,vf,C,dT,dV,fuente):
-		d1=float(vf)-float(vi)/float(dV)
-		d2=float(vf)-float(vi)//float(dV)
+		d1=(vf-vi)/dV
+		d2=(vf-vi)//dV
 		d3=d1-d2
-		
-		for i in range(vi,vf+dV,dV):
-			inicio=time.time()
-			while(True):
-				if(time.time()-inicio==float(dT)):
-					break
-					print i
-
+		for i in range(int(vi),int(vf+dV),int(dV)):
+			kepco1.WriteVolt(i,-C) ##Preguntar si corriente deberia ser negativa
+			time.sleep(dT)
+					
 	pt = win.getMouse()
 	while not Salir.clicked(pt):
 		puertos=glob.glob('/dev/tty[U]*')
@@ -224,7 +220,7 @@ def main():
 			mensaje.setText("Barrido en progreso...")
 			
 			##Rutina Barrido de Frecuencias##
-			rutinaDeltaV(v1,v2,C,dT,dV,kepco1)
+			rutinaDeltaV(v1_in,v2_in,C,dT,dV,kepco1)
 			Salir.activate()
 			mensaje.setText("Barrido finalizado")
 		pt = win.getMouse()
