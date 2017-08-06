@@ -44,7 +44,7 @@ def main():
 		puerto2 = 'no hay dispositivo'
 
 		
-	win = GraphWin("v2 Sweep",width=350, height=350)
+	win = GraphWin("v2 Sweep",width=400, height=375)
 	win.setCoords(0,0,ygrid,xgrid)
 	#win.setBackground('#BCC6CC')
 	myImage = Image(Point(5,15), 'backg2.gif')
@@ -181,7 +181,7 @@ def main():
 	port1_val.draw(win)
 
 		################## Mensaje de lectura ##################
-	mensaje=Text(Point(5,2),"")
+	mensaje=Text(Point(5,5),"")
 	mensaje.setFace('arial')
 	mensaje.setStyle('bold')
 	mensaje.setSize(11)
@@ -224,7 +224,7 @@ def main():
 			mensaje.setText("Barrido en progreso...")
 			
 			##Rutina Barrido de Frecuencias##
-			rutinaDeltaV(vi,vf,C,dT,dV,kepco1)
+			rutinaDeltaV(v1,v2,C,dT,dV,kepco1)
 			Salir.activate()
 			mensaje.setText("Barrido finalizado")
 		pt = win.getMouse()
