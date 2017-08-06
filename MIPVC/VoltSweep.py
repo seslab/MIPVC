@@ -12,7 +12,7 @@
 
 from graphics import *
 from button import *
-import serialKepco as SK
+import SerialKepco as SK
 from HarmGen import *
 import matplotlib.pyplot as plt
 import numpy as np
