@@ -189,8 +189,8 @@ def main():
 	mensaje.draw(win)
 	
 	def rutinaDeltaV(vi,vf,C,dT,dV,fuente):
-		d1=float(vf-vi)/float(dV)
-		d2=float(vf-vi)//float(dV)
+		d1=float(vf)-float(vi)/float(dV)
+		d2=float(vf)-float(vi)//float(dV)
 		d3=d1-d2
 		
 		for i in range(vi,vf+dV,dV):
