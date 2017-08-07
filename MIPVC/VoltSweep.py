@@ -182,7 +182,7 @@ def main():
 
 		################## Mensaje de lectura ##################
 	mensaje=Text(Point(5,refy-20),"")
-	mensaje.setFace('arial')|
+	mensaje.setFace('arial')
 	mensaje.setStyle('bold')
 	mensaje.setSize(11)
 	mensaje.setTextColor("black")
