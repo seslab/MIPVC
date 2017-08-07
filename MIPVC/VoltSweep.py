@@ -193,8 +193,11 @@ def main():
 		d2=(vf-vi)//dV
 		d3=d1-d2
 		for i in range(int(vi),int(vf+dV),int(dV)):
-			kepco1.WriteVolt(i,-C) ##Preguntar si corriente deberia ser negativa
+			kepco1.WriteVolt(i,C) ##Preguntar si corriente deberia ser negativa
 			time.sleep(dT)
+			corriente=kepco1.measC()
+			tension=kepco1.measV()
+			np.savetxt("/home/SESLab/medicion.csv",np.array([corriente,tension]).T,delimiter=',')
 					
 	pt = win.getMouse()
 	while not Salir.clicked(pt):

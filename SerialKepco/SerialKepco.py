@@ -328,13 +328,17 @@ class Source:
 		self.k.flushInput()
 
 	def measV(self):
+		self.k.flushInput()
 		self.k.write('MEAS:VOLT?\n')
+		volt = self.k.readline()
+		return volt;
 		
 	def readM(self):
 		volt = self.k.readline()
 		return volt;
 		
 	def measC(self):
+		self.k.flushInput()
 		self.k.write('MEAS:CURR?\n')
 		curr = self.k.readline()
 		return curr;
