@@ -115,7 +115,7 @@ def main():
 	
 			################## Delta V ##################
 		
-	deltaV=Text(Point(refx,refy-6),"Δt de barrido(V): ")
+	deltaV=Text(Point(refx,refy-6),"ΔV de barrido(V): ")
 	deltaV.setFace('arial')
 	deltaV.setStyle('bold')
 	deltaV.setSize(12)
@@ -131,7 +131,7 @@ def main():
 
 		################## Corriente 1 ##################
 		
-	curr=Text(Point(refx,refy-9),"Corriente Limite: ")
+	curr=Text(Point(refx,refy-9),"Corriente (A): ")
 	curr.setFace('arial')
 	curr.setStyle('bold')
 	curr.setSize(12)
@@ -189,11 +189,10 @@ def main():
 	mensaje.draw(win)
 	
 	def rutinaDeltaV(vi,vf,C,dT,dV,fuente):
-		d1=(vf-vi)/dV
-		d2=(vf-vi)//dV
-		d3=d1-d2
-		for i in range(int(vi),int(vf+dV),int(dV)):
-			kepco1.WriteVolt(i,-C) ##Preguntar si corriente deberia ser negativa
+		d1=(vf-vi)//dV
+		d2=math.ceil(d1)*dV
+		for i in range(int(vi),int(d2),int(dV)):
+			kepco1.WriteVolt(i,C) ##Preguntar si corriente deberia ser negativa
 			time.sleep(dT)
 					
 	pt = win.getMouse()
