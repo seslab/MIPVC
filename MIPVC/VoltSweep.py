@@ -182,21 +182,27 @@ def main():
 
 		################## Mensaje de lectura ##################
 	mensaje=Text(Point(5,refy-20),"")
-	mensaje.setFace('arial')
+	mensaje.setFace('arial')|
 	mensaje.setStyle('bold')
 	mensaje.setSize(11)
 	mensaje.setTextColor("black")
 	mensaje.draw(win)
 	
+	
 	def rutinaDeltaV(vi,vf,C,dT,dV,fuente):
 		d1=(vf-vi)/dV
 		d2=(vf-vi)//dV
 		d3=d1-d2
+		corriente = []
+		tension = []
+		
 		for i in range(int(vi),int(vf+dV),int(dV)):
 			kepco1.WriteVolt(i,C) ##Preguntar si corriente deberia ser negativa
 			time.sleep(dT)
-			corriente=kepco1.measC()
-			tension=kepco1.measV()
+			corriente.append(kepco1.measC())
+			tension.append(kepco1.measV())
+			corriente=np.array(corriente)
+			tension=np.array(tension)
 			np.savetxt("/home/SESLab/medicion.csv",np.array([corriente,tension]).T,delimiter=',')
 					
 	pt = win.getMouse()
