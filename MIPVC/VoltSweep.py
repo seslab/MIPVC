@@ -195,9 +195,10 @@ def main():
 		d3=d1-d2
 		corriente=[]
 		tension=[]
-		
-		for i in range(int(vi),int(vf+dV),int(dV)):
-			kepco1.WriteVolt(i,C) ##Preguntar si corriente deberia ser negativa
+		sweep=np.arange(vi,vf,dV)
+		#for i in range(int(vi),int(vf+dV),int(dV)):
+		for i in sweep:
+			kepco1.WriteVolt(i,C)
 			time.sleep(dT)
 			c1=kepco1.measC()
 			v2=kepco1.measV()
