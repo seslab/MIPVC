@@ -198,17 +198,17 @@ def main():
 		
 		for i in range(int(vi),int(vf+dV),int(dV)):
 			kepco1.WriteVolt(i,C) ##Preguntar si corriente deberia ser negativa
+			time.sleep(dT)
 			c1=kepco1.measC()
 			v2=kepco1.measV()
-			time.sleep(dT)
 			t=time.strftime("%Y,%m,%d,%H,%M,%S")
-			print "I= " + str(c1) + " V= " +str(v2) + " t= " +str(t)
+			#print "I= " + str(c1) + " V= " +str(v2) + " t= " +str(t)
 			#print corriente
-			#corriente.append(float(c1))
-			#tension.append(kepco1.measV())
-			corriente=np.array(corriente)
-			#tension=np.array(tension)
-		#np.savetxt("/home/SESLab/medicion.csv",np.array([corriente]).T,delimiter=',')
+			corriente.append(float(c1))
+			tension.append(float(v2))
+		corriente=np.array(corriente)	
+		tension=np.array(tension)
+		np.savetxt("/home/SESLab/medicion.csv",np.array([corriente]).T,delimiter=',')
 					
 	pt = win.getMouse()
 	while not Salir.clicked(pt):
