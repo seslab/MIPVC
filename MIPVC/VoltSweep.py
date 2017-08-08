@@ -209,6 +209,10 @@ def main():
 		corriente=np.array(corriente)	
 		tension=np.array(tension)
 		np.savetxt("/home/SESLab/medicion.csv",np.array([corriente]).T,delimiter=',')
+		plt.style.use('ggplot')
+		plt.plot(tension,corriente)
+		plt.show(block=False)
+		
 					
 	pt = win.getMouse()
 	while not Salir.clicked(pt):
