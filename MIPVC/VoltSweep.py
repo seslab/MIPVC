@@ -211,7 +211,9 @@ def main():
 		tension=np.array(tension)
 		np.savetxt("/home/SESLab/medicion.csv",np.array([corriente]).T,delimiter=',')
 		plt.style.use('ggplot')
-		plt.plot(tension,corriente)
+		plt.plot(sweep,corriente)
+		plt.xlabel('Tensión (V)',fontsize=14)
+		plt.ylabel('Corriente (A)',fontsize=14)
 		plt.show(block=False)
 		
 					
