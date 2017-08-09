@@ -209,7 +209,7 @@ def main():
 			tension.append(float(v2))
 		corriente=np.array(corriente)	
 		tension=np.array(tension)
-		np.savetxt("/home/SESLab/medicion.csv",np.array([corriente]).T,delimiter=',')
+		np.savetxt("/home/SESLab/medicion.csv",np.array([corriente,tension]).T,delimiter=',')
 		plt.style.use('ggplot')
 		plt.plot(sweep,corriente)
 		plt.xlabel('Tensión (V)',fontsize=14)
