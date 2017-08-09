@@ -192,11 +192,10 @@ def main():
 	
 	
 	def rutinaDeltaV(vi,vf,C,dT,dV,fuente):
-		d1=(vf-vi)/dV
-		d2=(vf-vi)//dV
-		d3=d1-d2
 		corriente=[]
 		tension=[]
+		if vf > vi:
+			dV=-dV
 		sweep=np.arange(vi,vf,dV)
 		#for i in range(int(vi),int(vf+dV),int(dV)):
 		for i in sweep:
