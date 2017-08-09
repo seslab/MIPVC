@@ -205,7 +205,7 @@ def main():
 			c1=kepco1.measC()
 			v2=kepco1.measV()
 			t=time.strftime("%Y,%m,%d,%H,%M,%S")
-			#print "I= " + str(c1) + " V= " +str(v2) + " t= " +str(t)
+			print "I= " + str(c1) + " V= " +str(v2) + " t= " +str(t)
 			#print corriente
 			corriente.append(float(c1))
 			tension.append(float(v2))
