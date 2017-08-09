@@ -15,6 +15,8 @@ from button import *
 import SerialKepco as SK
 from HarmGen import *
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from matplotlib.ticker import MultipleLocator
 import numpy as np
 import math
 import io
@@ -212,8 +214,8 @@ def main():
 		np.savetxt("/home/SESLab/medicion.csv",np.array([corriente,tension]).T,delimiter=',')
 		plt.style.use('ggplot')
 		plt.plot(sweep,corriente)
-		plt.xlabel('Tensión (V)',fontsize=14)
-		plt.ylabel('Corriente (A)',fontsize=14)
+		plt.xlabel('Tensión (V)')
+		plt.ylabel('Corriente (A)')
 		plt.show(block=False)
 		
 					
