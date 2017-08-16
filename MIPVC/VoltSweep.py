@@ -196,7 +196,10 @@ def main():
 		tension=[]
 		if vf > vi:
 			dV=-dV
+		else:
+			dV=dV
 		sweep=np.arange(vi,vf,dV)
+		print sweep
 		#for i in range(int(vi),int(vf+dV),int(dV)):
 		for i in sweep:
 			kepco1.WriteVolt(i,C)
