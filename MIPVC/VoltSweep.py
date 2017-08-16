@@ -200,6 +200,8 @@ def main():
 			dV=dV
 		sweep=np.arange(vi,vf,dV)
 		print sweep
+		print vi
+		print vf
 		#for i in range(int(vi),int(vf+dV),int(dV)):
 		for i in sweep:
 			kepco1.WriteVolt(i,C)
