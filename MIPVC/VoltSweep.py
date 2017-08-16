@@ -194,7 +194,7 @@ def main():
 	def rutinaDeltaV(vi,vf,C,dT,dV,fuente):
 		corriente=[]
 		tension=[]
-		if vf > vi:
+		if vi > vf:
 			dV=-dV
 		else:
 			dV=dV
