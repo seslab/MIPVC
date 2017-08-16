@@ -47,7 +47,7 @@ def main():
 	win = GraphWin("MicroInverter Characterization",width=500, height=220)
 	win.setCoords(0,0,ygrid,xgrid)
 	#win.setBackground('#BCC6CC')
-	background = Image(Point(15,30), 'back2.gif')
+	background = Image(Point(15,25), 'back2.gif')
 	background.draw(win)
 	logoTEC = Image(Point(22,30), 'TEC.gif')
 	logoTEC.draw(win)
@@ -66,7 +66,7 @@ def main():
 	Salir.activate()
 	
 		################## Mensaje de lectura ##################
-	mensaje=Text(Point(refx,refy-12),"")
+	mensaje=Text(Point(refx,refy-15),"")
 	mensaje.setFace('arial')
 	mensaje.setStyle('bold')
 	mensaje.setSize(11)
