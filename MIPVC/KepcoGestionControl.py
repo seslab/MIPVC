@@ -36,7 +36,7 @@ def main():
 	Tm=0.0005;
 	global Source;
 		
-	win = GraphWin("Control de Fuentes Kepco",width=1100, height=300)
+	win = GraphWin("Control de Fuentes Kepco",width=800, height=300)
 	win.setCoords(0,0,ygrid,xgrid)
 	#win.setBackground('#BCC6CC')
 	myImage = Image(Point(10,12.5), 'backg.gif')
@@ -54,29 +54,41 @@ def main():
 	line2.draw(win)
 	
 	sin = Button(win, Point(refx,refy), width_b, heigh_b, "sin(ωt)")
+	sin.label.setSize(10)
 	#sin.activate()
 	Harm = Button(win, Point(refx,refy-3), width_b, heigh_b, "Ármonicas")
+	Harm.label.setSize(10)
 	#Harm.activate()
-	currM = Button(win, Point(refx,refy-6), width_b, heigh_b, "Modo Corriente")
+	currM = Button(win, Point(refx,refy-6), width_b, heigh_b, "Modo-Corriente")
+	currM.label.setSize(10)
 	#currM.activate()
 	dcout = Button(win, Point(refx,refy-9), width_b, heigh_b, "Salida DC")
+	dcout.label.setSize(10)
 	#dcout.activate()
-	info = Button(win, Point(refx,refy-12), width_b, heigh_b, "Información Fuente")
+	info = Button(win, Point(refx,refy-12), width_b, heigh_b, "Información")
+	info.label.setSize(10)
 	#info.activate()
 	stop = Button(win, Point(refx,refy-15), width_b, heigh_b, "Detener")
+	stop.label.setSize(10)
 	#stop.activate()
 
 	sin2 = Button(win, Point(refx2,refy), width_b, heigh_b, "sin(ωt)")
+	sin2.label.setSize(10)
 	#sin2.activate()
 	Harm2 = Button(win, Point(refx2,refy-3), width_b, heigh_b, "Ármonicas")
+	Harm2.label.setSize(10)
 	#Harm2.activate()
 	currM2 = Button(win, Point(refx2,refy-6), width_b, heigh_b, "Modo Corriente")
+	currM2.label.setSize(10)
 	#currM2.activate()
 	dcout2 = Button(win, Point(refx2,refy-9), width_b, heigh_b, "Salida DC")
+	dcout2.label.setSize(10)
 	#dcout2.activate()
-	info2 = Button(win, Point(refx2,refy-12), width_b, heigh_b, "Información Fuente")
+	info2 = Button(win, Point(refx2,refy-12), width_b, heigh_b, "Información")
+	info2.label.setSize(10)
 	#info2.activate()
 	stop2 = Button(win, Point(refx2,refy-15), width_b, heigh_b, "Detener")
+	stop2.label.setSize(10)
 	#stop2.activate()
 	
 	puertos=glob.glob('/dev/tty[U]*')
@@ -103,18 +115,23 @@ def main():
 		puerto2 = 'no hay dispositivo'
 	
 	
-	connects1 = Button(win, Point(refx+7,refy+3), width_b-1.3, heigh_b, "Conectar")
+	connects1 = Button(win, Point(refx+6.5,refy+3), width_b-1, heigh_b, "Conectar")
+	connects1.label.setSize(10)
 	connects1.activate()
-	connects2 = Button(win, Point(refx2+7,refy+3), width_b-1.3, heigh_b, "Conectar")
+	connects2 = Button(win, Point(refx2+6.5,refy+3), width_b-1, heigh_b, "Conectar")
+	connects2.label.setSize(10)
 	connects2.activate()
 	
 	caracterizar = Button(win, Point(21.5,10), 2, 2, "Caracterizar")
+	caracterizar.label.setSize(10)
 	caracterizar.activate()
 	
 	cal = Button(win, Point(21.5,6), 2, 2, "Calibrar")
+	cal.label.setSize(10)
 	cal.activate()
 	
 	quitButton = Button(win, Point(21.5,2), 2, 2, "Salir")
+	quitButton.label.setSize(10)
 	quitButton.activate()
 	
 	
@@ -124,7 +141,7 @@ def main():
 	freq=Text(Point(refx+4,refy),"Frecuencia(Hz): ")
 	freq.setFace('arial')
 	freq.setStyle('bold')
-	freq.setSize(12)
+	freq.setSize(10)
 	#freq.setTextColor("#8EB84A")
 	freq.setTextColor("black")
 	freq.draw(win)
@@ -141,7 +158,7 @@ def main():
 	volt=Text(Point(refx+4,refy-3),"Tensión(V): ")
 	volt.setFace('arial')
 	volt.setStyle('bold')
-	volt.setSize(12)
+	volt.setSize(10)
 	volt.setTextColor("black")
 	volt.draw(win)
 	
@@ -157,7 +174,7 @@ def main():
 	curr=Text(Point(refx+4,refy-6),"Corriente(A): ")
 	curr.setFace('arial')
 	curr.setStyle('bold')
-	curr.setSize(12)
+	curr.setSize(10)
 	curr.setTextColor("black")
 	curr.draw(win)
 	
@@ -173,7 +190,7 @@ def main():
 	period=Text(Point(refx+4,refy-9),"Periodos: ")
 	period.setFace('arial')
 	period.setStyle('bold')
-	period.setSize(12)
+	period.setSize(10)
 	period.setTextColor("black")
 	period.draw(win)
 	
@@ -189,7 +206,7 @@ def main():
 	harm=Text(Point(refx+4,refy-12),"Ármonicas: ")
 	harm.setFace('arial')
 	harm.setStyle('bold')
-	harm.setSize(12)
+	harm.setSize(10)
 	harm.setTextColor("black")
 	harm.draw(win)
 	
@@ -206,11 +223,11 @@ def main():
 	port1_name=Text(Point(refx,refy+3),"Puerto Serial 1: ")
 	port1_name.setFace('arial')
 	port1_name.setStyle('bold')
-	port1_name.setSize(12)
+	port1_name.setSize(10)
 	port1_name.setTextColor("black")
 	port1_name.draw(win)
 	
-	port1_val=Entry(Point(refx+3.5,refy+3),25)
+	port1_val=Entry(Point(refx+3.5,refy+3),18)
 	port1_val.setFace('arial')
 	port1_val.setSize(10)
 	port1_val.setTextColor("white")
@@ -226,7 +243,7 @@ def main():
 	freq2=Text(Point(refx2+4,refy),"Frecuencia(Hz): ")
 	freq2.setFace('arial')
 	freq2.setStyle('bold')
-	freq2.setSize(12)
+	freq2.setSize(10)
 	freq2.setTextColor("black")
 	freq2.draw(win)
 	
@@ -244,7 +261,7 @@ def main():
 	volt2=Text(Point(refx2+4,refy-3),"Tensión(V): ")
 	volt2.setFace('arial')
 	volt2.setStyle('bold')
-	volt2.setSize(12)
+	volt2.setSize(10)
 	volt2.setTextColor("black")
 	volt2.draw(win)
 	
@@ -260,7 +277,7 @@ def main():
 	curr2=Text(Point(refx2+4,refy-6),"Corriente(A): ")
 	curr2.setFace('arial')
 	curr2.setStyle('bold')
-	curr2.setSize(12)
+	curr2.setSize(10)
 	curr2.setTextColor("black")
 	curr2.draw(win)
 	
@@ -276,7 +293,7 @@ def main():
 	period2=Text(Point(refx2+4,refy-9),"Periodos: ")
 	period2.setFace('arial')
 	period2.setStyle('bold')
-	period2.setSize(12)
+	period2.setSize(10)
 	period2.setTextColor("black")
 	period2.draw(win)
 	
@@ -292,7 +309,7 @@ def main():
 	harm2=Text(Point(refx2+4,refy-12),"Ármonicas: ")
 	harm2.setFace('arial')
 	harm2.setStyle('bold')
-	harm2.setSize(12)
+	harm2.setSize(10)
 	harm2.setTextColor("black")
 	harm2.draw(win)
 	
@@ -308,11 +325,11 @@ def main():
 	port2_name=Text(Point(refx+10,refy+3),"Puerto Serial 2: ")
 	port2_name.setFace('arial')
 	port2_name.setStyle('bold')
-	port2_name.setSize(12)
+	port2_name.setSize(10)
 	port2_name.setTextColor("black")
 	port2_name.draw(win)
 	
-	port2_val=Entry(Point(refx+13.5,refy+3),25)
+	port2_val=Entry(Point(refx+13.5,refy+3),18)
 	port2_val.setFace('arial')
 	port2_val.setSize(10)
 	port2_val.setTextColor("white")
@@ -325,14 +342,14 @@ def main():
 	mensaje=Text(Point(5,2),"")
 	mensaje.setFace('arial')
 	mensaje.setStyle('bold')
-	mensaje.setSize(11)
+	mensaje.setSize(10)
 	mensaje.setTextColor("black")
 	mensaje.draw(win)
 	
 	mensaje2=Text(Point(15,2),"")
 	mensaje2.setFace('arial')
 	mensaje2.setStyle('bold')
-	mensaje2.setSize(11)
+	mensaje2.setSize(10)
 	mensaje2.setTextColor("black")
 	mensaje2.draw(win)
 
