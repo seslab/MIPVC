@@ -25,9 +25,9 @@ import tkFileDialog
 from EnergyQ import *
 
 def main():
-	xgrid=30;
+	xgrid=35;
 	ygrid=30;
-	refy=15;
+	refy=23;
 	refx=15;
 	refx2=12;
 	width_b=9;
@@ -44,14 +44,14 @@ def main():
 		puerto2 = 'no hay dispositivo'
 	
 		
-	win = GraphWin("MicroInverter Characterization",width=500, height=200)
+	win = GraphWin("MicroInverter Characterization",width=500, height=220)
 	win.setCoords(0,0,ygrid,xgrid)
 	#win.setBackground('#BCC6CC')
-	background = Image(Point(15,15), 'back2.gif')
+	background = Image(Point(15,30), 'back2.gif')
 	background.draw(win)
-	logoTEC = Image(Point(22,25), 'TEC.gif')
+	logoTEC = Image(Point(22,30), 'TEC.gif')
 	logoTEC.draw(win)
-	LogoSESLab = Image(Point(7,25), 'SESLab.gif')
+	LogoSESLab = Image(Point(7,30), 'SESLab.gif')
 	LogoSESLab.draw(win)
 	
 	Fuentes = Button(win, Point(refx-7,refy), width_b, heigh_b, "Fuentes Kepco")
