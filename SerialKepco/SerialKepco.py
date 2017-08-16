@@ -386,6 +386,21 @@ class Source:
 		
 	def calVPRmin(self):
 		self.k.write('CAL:VPR MIN\n');
+	
+	def calZeroC(self):
+		self.k.write('CAL:CURR ZERO\n');
+		
+	def calMaxC(self):
+		self.k.write('CAL:CURR MAX\n');
+		
+	def calMinC(self):
+		self.k.write('CAL:CURR MIN\n');
+		
+	def calCmax(self):
+		self.k.write('CAL:LCURR MAX\n');
+		
+	def calCmin(self):
+		self.k.write('CAL:LCURR MIN\n');
 		
 	def calSave(self):
 		self.k.write('CAL:DATA SAVE\n');

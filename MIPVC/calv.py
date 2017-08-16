@@ -12,14 +12,14 @@
 
 from graphics import *
 from button import *
-from SerialKepco import *
+import SerialKepco as SK
 from HarmGen import *
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 import glob ##### para buscar los puertos USB disponibles
 
-
+global SK
 def main():
 	refy=35;
 	refy2=20;
@@ -34,7 +34,7 @@ def main():
 		puerto1 = 'no hay dispositivo'
 	
 	win = GraphWin("Control de Fuentes Kepco",width=450, height=400)
-	win.setCoords(0,0,30,40)
+	win.setCoords(0,0,40,40)
 	#win.setBackground('#BCC6CC')
 	myImage = Image(Point(10,12.5), 'backg.gif')
 	myImage.draw(win)
@@ -44,50 +44,78 @@ def main():
 	line1.setWidth(2)
 	line1.draw(win)
 	
-	line2 = Line(Point(20, refy-refy2), Point(20, refy+2))
+	line2 = Line(Point(30, refy-refy2), Point(30, refy+2))
 	line2.setFill("white")
 	line2.setWidth(2)
 	line2.draw(win)
 	
-	line3 = Line(Point(0, refy+2), Point(30, refy+2))
+	line3 = Line(Point(0, refy+2), Point(40, refy+2))
 	line3.setFill("white")
 	line3.setWidth(2)
 	line3.draw(win)
 	
-	line4 = Line(Point(0, refy-refy2), Point(30, refy-refy2))
+	line4 = Line(Point(0, refy-refy2), Point(40, refy-refy2))
 	line4.setFill("white")
 	line4.setWidth(2)
 	line4.draw(win)
 	
-	zero = Button(win, Point(refx,refy), width_b, heigh_b, "Zero Cal")
+	zero = Button(win, Point(refx,refy), width_b, heigh_b, "Zero Volt")
+	zero.label.setSize(10)
 	
-	fullsP = Button(win, Point(refx,refy-3), width_b, heigh_b, "Full Scale Max")
-	fullsM = Button(win, Point(refx,refy-6), width_b, heigh_b, "Full Scale Min")
+	fullsP = Button(win, Point(refx,refy-3), width_b, heigh_b, "Max Scale V")
+	fullsP.label.setSize(10)
+	fullsM = Button(win, Point(refx,refy-6), width_b, heigh_b, "Min Scale V")
+	fullsM.label.setSize(10)
 	
-	vprcprP = Button(win, Point(refx,refy-9), width_b, heigh_b, "VPR CPR Max")
-	vprcprM = Button(win, Point(refx,refy-12), width_b, heigh_b, "VPR CPR Min")
+	vprcprP = Button(win, Point(refx,refy-9), width_b, heigh_b, "Vmax Proct")
+	vprcprP.label.setSize(10)
+	vprcprM = Button(win, Point(refx,refy-12), width_b, heigh_b, "Vmin Proct")
+	vprcprM.label.setSize(10)
+
+
+	zeroc = Button(win, Point(refx+10,refy), width_b, heigh_b, "Zero Curr")
+	zeroc.label.setSize(10)
 	
-	info = Button(win, Point(refx,refy-15), width_b, heigh_b, "info")
+	fullsPc = Button(win, Point(refx+10,refy-3), width_b, heigh_b, "Max Scale C")
+	fullsPc.label.setSize(10)
+	fullsMc = Button(win, Point(refx+10,refy-6), width_b, heigh_b, "Min Scale C")
+	fullsMc.label.setSize(10)
+	
+	vprcprPc = Button(win, Point(refx+10,refy-9), width_b, heigh_b, "Cmax Proct")
+	vprcprPc.label.setSize(10)
+	vprcprMc = Button(win, Point(refx+10,refy-12), width_b, heigh_b, "Cmin Proct")
+	vprcprMc.label.setSize(10)
+	
+	info = Button(win, Point(refx+20,refy-15), width_b, heigh_b, "info")
+	info.label.setSize(10)
 	info.activate()
-	stop = Button(win, Point(refx,refy-18), width_b, heigh_b, "Stop")
+	stop = Button(win, Point(refx+20,refy-18), width_b, heigh_b, "Stop")
+	stop.label.setSize(10)
 	
-	plusF = Button(win, Point(refx+8,refy-9), width_b-5, heigh_b, "+")
-	minusF = Button(win, Point(refx+12,refy-9), width_b-5, heigh_b, "-")
-	plusC = Button(win, Point(refx+8,refy-12), width_b-5, heigh_b, "++")
-	minusC = Button(win, Point(refx+12,refy-12), width_b-5, heigh_b, "--")
+	plusF = Button(win, Point(refx+18,refy-9), width_b-5, heigh_b, "+")
+	plusF.label.setSize(10)
+	minusF = Button(win, Point(refx+22,refy-9), width_b-5, heigh_b, "-")
+	minusF.label.setSize(10)
+	plusC = Button(win, Point(refx+18,refy-12), width_b-5, heigh_b, "++")
+	plusC.label.setSize(10)
+	minusC = Button(win, Point(refx+22,refy-12), width_b-5, heigh_b, "--")
+	minusC.label.setSize(10)
 	
 	calstart = Button(win, Point(refx-10,refy-6), width_b, heigh_b, "Empezar")
+	calstart.label.setSize(10)
 	calstart.activate()
 	save = Button(win, Point(refx-10,refy-9), width_b, heigh_b, "Guardar")
+	save.label.setSize(10)
 	
-	quitButton = Button(win, Point(15,2), width_b-2, heigh_b, "Quit")
+	quitButton = Button(win, Point(30,2), width_b-2, heigh_b, "Salir")
+	quitButton.label.setSize(10)
 	
 	
 	###############################---Datos Fuente 1---###############################
 
 		################## Calibracion Fina ##################
 	
-	calval=Text(Point(refx+10,refy-3),"CAL:DATA<value> :")
+	calval=Text(Point(refx+20,refy-3),"Calibración:")
 	calval.setFace('arial')
 	calval.setStyle('bold')
 	calval.setSize(10)
@@ -95,7 +123,7 @@ def main():
 	calval.setTextColor("black")
 	calval.draw(win)
 	
-	calval_val=Entry(Point(refx+10,refy-6),2)
+	calval_val=Entry(Point(refx+20,refy-6),2)
 	calval_val.setFace('arial')
 	calval_val.setSize(10)
 	calval_val.setTextColor("white")
@@ -105,10 +133,10 @@ def main():
 	
 		################## Puerto Serial ##################
 	
-	port1_name=Text(Point(refx-5,refy+3.5),"Puerto serial: ")
+	port1_name=Text(Point(refx-10,refy+3.5),"Puerto serial: ")
 	port1_name.setFace('arial')
 	port1_name.setStyle('bold')
-	port1_name.setSize(12)
+	port1_name.setSize(10)
 	port1_name.setTextColor("black")
 	port1_name.draw(win)
 	
@@ -130,7 +158,7 @@ def main():
 	passw.setTextColor("black")
 	passw.draw(win)
 	
-	passw_val=Entry(Point(refx-10,refy-3),15)
+	passw_val=Entry(Point(refx-10,refy-3),13)
 	passw_val.setFace('arial')
 	passw_val.setSize(10)
 	passw_val.setTextColor("white")
@@ -139,7 +167,7 @@ def main():
 	passw_val.draw(win)
 
 		################## Mensaje de lectura ##################
-	mensaje=Text(Point(15,refy-27),"")
+	mensaje=Text(Point(20,refy-27),"")
 	mensaje.setFace('arial')
 	mensaje.setStyle('bold')
 	mensaje.setSize(11)
@@ -166,11 +194,10 @@ def main():
 		
 		if calstart.clicked(pt):
 			port1=port1_val.getText()
-			#port1=port1.upper();
-			#port1='/dev/tty'+port1
-			kepco1=Source("Fuente1",port1)
-			estado=kepco1.connectport()
-			mensaje.setText(estado)
+			kepco1=SK.Source("Fuente1",port1)
+			m1=kepco1.connectport()
+			m2=kepco1.identify()
+			mensaje.setText(m1 + "\n" + m2)
 			password1=passw_val.getText()
 			kepco1.calStart(password1);
 			minusF.activate();
@@ -178,10 +205,15 @@ def main():
 			minusC.activate();
 			plusC.activate()
 			vprcprP.activate();
+			vprcprPc.activate();
 			vprcprM.activate();
+			vprcprMc.activate();
 			zero.activate();
+			zeroc.activate();
 			fullsP.activate();
+			fullsPc.activate();
 			fullsM.activate();
+			fullsMc.activate();
 			stop.activate();
 			save.activate()
 		
@@ -189,6 +221,7 @@ def main():
 			kepco1.calSave();
 			quitButton.activate();	
 		
+		### Tension #####
 		if zero.clicked(pt):
 			kepco1.calZero();
 	
@@ -203,6 +236,24 @@ def main():
 		
 		if vprcprM.clicked(pt):
 			kepco1.calVPRmin();
+			
+		### Corriente #####
+		if zeroc.clicked(pt):
+			kepco1.calZeroC();
+	
+		if fullsPc.clicked(pt):
+			kepco1.calMaxC();
+		
+		if fullsMc.clicked(pt):
+			kepco1.calMinC();
+		
+		if vprcprPc.clicked(pt):
+			kepco1.calCmax();
+		
+		if vprcprMc.clicked(pt):
+			kepco1.calCmin();
+		
+		######
 		
 		if plusF.clicked(pt):
 			val1=calval.getText()
