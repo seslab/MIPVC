@@ -22,7 +22,7 @@ import base64
 import Tkinter as tk
 from urllib2 import urlopen
 import glob ##### para buscar los puertos USB disponibles
-import controlTektronix as CT
+#import controlTektronix as CT
 import RPi.GPIO as GPIO
 import SensorVC as VC
 global GPIO
@@ -224,13 +224,13 @@ def main():
 			#ts=float(tsm.getText())
 			Salir.deactivate()
 			mensaje.setText("Caracterizando...")
-			osc1=CT.getWave();
+			#osc1=CT.getWave();
 			#meas=VC.Sensor();
 			meas=VC.Sensor(55*(1+n));
-			alerta1=osc1.connectOsc()
-			mensaje.setText("Caracterizando..."+'\n'+alerta1)
-			alerta2=osc1.OscWave()
-			mensaje.setText("Caracterizando..."+'\n'+alerta2)
+			#alerta1=osc1.connectOsc()
+			#mensaje.setText("Caracterizando..."+'\n'+alerta1)
+			#alerta2=osc1.OscWave()
+			#mensaje.setText("Caracterizando..."+'\n'+alerta2)
 			meas.start();
 			#meas.CurrMeas(55*(1+n));
 			##Rutina Barrido de Frecuencias##
