@@ -145,11 +145,12 @@ class Source:
 		self.k.write('OUTP ON\n');
 		self.k.write('VOLT:MODE LIST\n');
 
-	def WriteVoltSine(self, Volt,f,n,C):
+	def WriteVoltSine(self, Volt,f,n,C,ofs):
 		self.k.flushInput();
 		self.k.write('*OUTP OFF\n');
 		self.k.write('*RST\n');
 		self.V=Volt;
+		self.ofs=ofs;
 		self.f=f
 		self.n=n
 		self.C=C
@@ -163,7 +164,7 @@ class Source:
 		ts=round(T/m,9);
 		#t=np.arange(0,T,ts);
 		t=np.arange(0,m*ts,ts);
-		funct=self.V*np.sin(2*np.pi*self.f*t)
+		funct=self.V*np.sin(2*np.pi*self.f*t)+self.ofs
 		"""		
 		if len(t) < len(funct):
 			m=len(t);
@@ -225,11 +226,12 @@ class Source:
 		#plt.plot(t,funct)
 		#plt.show(block=False);
 		print([ts,1.0/(ts*len(funct)),Volt]);
-	def WriteHarm(self, Volt,f,n,C,y):
+	def WriteHarm(self, Volt,f,n,C,y,ofs):
 		self.V=Volt;
 		self.f=f
 		self.n=n
 		self.C=C
+		self.ofs=ofs
 		self.y=y #puede ser lista o un numero entero
 		self.k.write('*RST\n');
 		self.k.write('*CLS\n');
@@ -241,7 +243,7 @@ class Source:
 		ts=round(T/m,6);
 		t=np.arange(0,T,ts)
 		Harm1=HarmGen(self.V,self.f,self.y);
-		funct=Harm1.Harm()
+		funct=Harm1.Harm()+self.ofs
 		voltList=np.round(funct,3)
 		self.voltList=voltList;
 		step=10;

@@ -60,15 +60,15 @@ def main():
 	
 	
 	##Fuente 1
-	Vout1 = Button(win, Point(refx+23,refy-4), width_b2, heigh_b2, " ")
+	Vout1 = Button(win, Point(refx+23,refy-4), width_b2, heigh_b2, "☑")
 	Vout1.rect.setFill("#33CC00")
-	stop1 = Button(win, Point(refx+23,refy-8), width_b2, heigh_b2, " ")
+	stop1 = Button(win, Point(refx+23,refy-8), width_b2, heigh_b2, "■")
 	stop1.rect.setFill("#C01A19")
 	
 	##Fuente 2
-	Vout2 = Button(win, Point(refx+63,refy-4), width_b2, heigh_b2, " ")
+	Vout2 = Button(win, Point(refx+63,refy-4), width_b2, heigh_b2, "☑")
 	Vout2.rect.setFill("#33CC00")
-	stop2 = Button(win, Point(refx+63,refy-8), width_b2, heigh_b2, " ")
+	stop2 = Button(win, Point(refx+63,refy-8), width_b2, heigh_b2, "■")
 	stop2.rect.setFill("#C01A19")
 
 

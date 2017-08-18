@@ -23,6 +23,8 @@ import base64
 import Tkinter as tk
 from urllib2 import urlopen
 import glob ##### para buscar los puertos USB disponibles
+import tkMessageBox
+
 global SK
 
 def main():
@@ -96,6 +98,7 @@ def main():
 	v1_val.setSize(10)
 	v1_val.setTextColor("white")
 	v1_val.setFill('#6B6B6B')
+	v1_val.setText('0')
 	v1_val.draw(win)
 
 		################## Tensión 1 ##################
@@ -112,6 +115,7 @@ def main():
 	v2_val.setSize(10)
 	v2_val.setTextColor("white")
 	v2_val.setFill('#6B6B6B')
+	v2_val.setText('0')
 	v2_val.draw(win)
 	
 			################## Delta V ##################
@@ -128,6 +132,7 @@ def main():
 	deltaV_val.setSize(10)
 	deltaV_val.setTextColor("white")
 	deltaV_val.setFill('#6B6B6B')
+	deltaV_val.setText('0')
 	deltaV_val.draw(win)
 
 		################## Corriente 1 ##################
@@ -144,6 +149,7 @@ def main():
 	curr_val.setSize(10)
 	curr_val.setTextColor("white")
 	curr_val.setFill('#6B6B6B')
+	curr_val.setText('0')
 	curr_val.draw(win)
 
 		################## deltaTos 1 ##################
@@ -160,6 +166,7 @@ def main():
 	deltaT_val.setSize(10)
 	deltaT_val.setTextColor("white")
 	deltaT_val.setFill('#6B6B6B')
+	deltaT_val.setText('1')
 	deltaT_val.draw(win)
 
 
@@ -224,6 +231,31 @@ def main():
 					
 	pt = win.getMouse()
 	while not Salir.clicked(pt):
+		dT=float(deltaT_val.getText())
+		dV=float(deltaV_val.getText())
+		v1_in=float(v1_val.getText())
+		v2_in=float(v2_val.getText())
+		C=float(curr_val.getText())
+		if (dT < 0.0005):
+			deltaT_val.setText('0.0005')
+			tkMessageBox.showerror("Error", "Valor Δt debe ser mayor a 0.0005s")
+		
+		if (dV > max(v1_in,v2_in)):
+			deltaV_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor ΔV no puede ser mayor a V₁ o V₂")
+		
+		if (C > 4) or (C < -4) :
+			curr_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor C no puede ser mayor a 4A o menor a -4A")
+		
+		if (v1_in > 50) or (v1_in < -50) :
+			v1_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor V no puede ser mayor a 50V o menor a -50V")	
+		
+		if (v2_in > 50) or (v2_in < -50) :
+			v2_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor V no puede ser mayor a 50V o menor a -50V")
+		
 		puertos=glob.glob('/dev/tty[U]*')
 		try:
 			puerto1 = puertos[0]
