@@ -211,6 +211,9 @@ class GraphWin(tk.Canvas):
                  width=200, height=200, autoflush=True):
         assert type(title) == type(""), "Title must be a string"
         master = tk.Toplevel(_root)
+        #master.overrideredirect(True)
+        master.attributes("-fullscreen", True)
+        master.geometry("+400+240")
         master.protocol("WM_DELETE_WINDOW", self.close)
         tk.Canvas.__init__(self, master, width=width, height=height,
                            highlightthickness=0, bd=0)
@@ -756,7 +759,7 @@ class Text(GraphicsObject):
         return self.anchor.clone()
 
     def setFace(self, face):
-        if face in ['helvetica','arial','courier','times roman']:
+        if face in ['helvetica','arial','courier','times roman','sans-serif','Calibri','roman']:
             f,s,b = self.config['font']
             self._reconfig("font",(face,s,b))
         else:
@@ -955,7 +958,11 @@ class Image(GraphicsObject):
         ext = name.split(".")[-1]
         self.img.write( filename, format=ext)
 
-        
+    def clicked(self, ps):
+        """ RETURNS true if button active and p is inside"""
+        return self.anchor.getX()-3 <= ps.getX() <= self.anchor.getX()+3 and \
+               self.anchor.getY()-3 <= ps.getY() <= self.anchor.getY()+3
+               
 def color_rgb(r,g,b):
     """r,g,b are intensities of red, green, and blue in range(256)
     Returns color specifier string for the resulting color"""
