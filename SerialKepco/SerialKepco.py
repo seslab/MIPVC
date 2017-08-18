@@ -55,12 +55,43 @@ class Source:
 				return "Conectado en puerto: " + "\n" + self.k.port				 
 			except IOError, e1:
 				return ("No se pudo abrir puerto serial")
+				
+				
+	def WriteSquare(self,Volt,f,n,C,ofs):
+		if f > 2000:
+			f=2000;
+		self.V=Volt;
+		self.C=C;
+		self.f=f;
+		self.n=n;
+		self.ofs=ofs;
+		self.k.write('LIST:CLE\n');				
+		self.k.write('LIST:VOLT ');	
+		funct=[self.V,-self.V];
+		self.voltList=funct;
+		self.k.write('LIST:VOLT ');
+		self.k.write(self.volt_out[i]);
+		self.k.write(',');
+		self.k.write(self.volt_out);
+		self.k.write('\n');
+		self.k.write('LIST:DWEL ');
+		self.k.write(str(1.0/(2*self.f)));
+		self.k.write('\n');
+		self.k.write('LIST:COUN ');
+		self.k.write(str(self.n));
+		self.k.write('\n');
+		self.k.write('OUTP ON\n');
+		self.k.write('CURR ');
+		self.k.write(str(self.C));
+		self.k.write('\n');
+		self.k.write('VOLT:MODE LIST\n');		
 
-	def WriteTrian(self,Volt,f,n,C):
+	def WriteSaw(self,Volt,f,n,C,ofs):
 		self.V=Volt;
 		self.C=C;
 		self.f=f
 		self.n=n
+		self.ofs=ofs;
 		#self.k.write('*RST\n');			
 		self.k.write('LIST:CLE\n');				
 		self.k.write('LIST:VOLT ');	
@@ -71,7 +102,73 @@ class Source:
 		ts=round(T/m,6);
 		t=np.arange(0,T,ts);
 		m=round(m/2)*2;	
-		funct1=self.V*np.arange(0,1,1/(m/2))
+		funct=self.V*np.arange(0,1,1/(m/2))+self.ofs;
+		funct=np.round(funct)
+		if len(t) < len(funct):
+			m=len(t);
+			funct=funct[0:m]
+			t=t[0:m]
+		elif len(funct) < len(t):
+			m=len(funct);
+			funct=funct[0:m]
+			t=t[0:m]
+		self.voltList=funct;
+		step=10;				
+		m=len(self.voltList)//step
+		m=m*step
+		voltList1=self.voltList[0:m]			
+		voltList2=self.voltList[m:len(self.voltList)]
+		for j in range(0,step):					
+			self.k.write('LIST:VOLT ');			#Se escribe listas de tensiones y se separan en sublistas
+			for i in range(j*len(voltList1)/step,(j+1)*len(voltList1)/step):
+				self.volt_out=str(voltList1[i]);	#
+				if i < ((j+1)*(len(voltList1)-1)/step):
+					self.k.write(self.volt_out);
+					self.k.write(',');
+				else:
+					self.k.write(self.volt_out);
+					self.k.write('\n');
+		self.k.write('LIST:VOLT ');
+		for i in range(0,len(voltList2)):
+				self.volt_out=str(voltList2[i]);
+				if i < len(voltList2):
+					self.k.write(self.volt_out);
+					self.k.write(',');
+				else:
+					self.k.write(self.volt_out);
+					self.k.write('\n');
+		self.k.write('LIST:DWEL ');
+		self.k.write(str(ts));
+		self.k.write('\n');
+		self.k.write('LIST:COUN ');
+		self.k.write(str(self.n));
+		self.k.write('\n');
+		#self.k.write('LIST:VOLT?\n');
+		#self.k.readline();
+		self.k.write('OUTP ON\n');
+		self.k.write('CURR ');
+		self.k.write(str(self.C));
+		self.k.write('\n');
+		self.k.write('VOLT:MODE LIST\n');
+		print([ts,1.0/(ts*len(funct))]);
+
+	def WriteTrian(self,Volt,f,n,C,ofs):
+		self.V=Volt;
+		self.C=C;
+		self.f=f
+		self.n=n
+		self.ofs=ofs;
+		#self.k.write('*RST\n');			
+		self.k.write('LIST:CLE\n');				
+		self.k.write('LIST:VOLT ');	
+		#tsm=0.0002;		#Tiempo de muestreo minimo
+		tsm=0.0005
+		T=1.0/self.f
+		m=float(int(T/tsm));
+		ts=round(T/m,6);
+		t=np.arange(0,T,ts);
+		m=round(m/2)*2;	
+		funct1=self.V*np.arange(0,1,1/(m/2))+self.ofs;
 		funct2=self.V*np.arange(1,0,-1/(m/2))
 		funct=np.concatenate([funct1,funct2])
 		funct=np.round(funct)

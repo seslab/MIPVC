@@ -365,7 +365,6 @@ def main():
 	mensaje2.draw(win)
 
 	pt = win.getMouse()
-	
 	while not quitButton.clicked(pt):
 		n=float(period_val.getText())
 		f=float(freq_val.getText())
