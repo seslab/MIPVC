@@ -27,6 +27,9 @@ from EnergyQ import *
 import subprocess
 import tkMessageBox
 
+top=tk.tk()
+thelp=tk.Toplevel(top)
+
 def main():
 	xgrid=80;
 	ygrid=48;
@@ -117,29 +120,34 @@ def main():
 			b=1;
 		
 		if FuenteV.clicked(pt):
-			#execfile('FuenteV.py')
+			##execfile('FuenteV.py')
 			subprocess.Popen(["python", "FuenteV.py"] + sys.argv[1:])
 			sys.exit()
 		if FuenteC.clicked(pt):
-			execfile('FuenteC.py')
-			
+			#execfile('FuenteC.py')
+			subprocess.Popen(["python", "FuenteC.py"] + sys.argv[1:])
 		if BarridoV.clicked(pt):
-			execfile('BarridoV.py')
+			#execfile('BarridoV.py')
+			subprocess.Popen(["python", "BarridoV.py"] + sys.argv[1:])
 			
 		if BarridoC.clicked(pt):
-			execfile('BarridoC.py')
+			#execfile('BarridoC.py')
+			subprocess.Popen(["python", "BarridoC.py"] + sys.argv[1:])
 			
 		if Seno.clicked(pt):
-			execfile('Sinusoidales.py')
+			#execfile('Sinusoidales.py')
+			subprocess.Popen(["python", "Sinusoidales.py"] + sys.argv[1:])
 			
 		if Periodicas.clicked(pt):
-			execfile('Periodicas.py')
+			#execfile('Periodicas.py')
+			subprocess.Popen(["python", "Periodicas.py"] + sys.argv[1:])
 			
 		if FuencE.clicked(pt):
-			execfile('FuncEspeciales.py')
+			#execfile('FuncEspeciales.py')
+			subprocess.Popen(["python", "FuncEspeciales.py"] + sys.argv[1:])
 			
 		if Ayuda.clicked(pt):
-			tkMessageBox.showinfo('Ayuda',AyudaMensaje)
+			tkMessageBox.showinfo('Ayuda',AyudaMensaje,parent=thelp)
 		
 		if Salir.clicked(pt):
 			os.system("shutdown now")
