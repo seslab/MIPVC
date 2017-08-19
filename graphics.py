@@ -213,9 +213,9 @@ class GraphWin(tk.Canvas):
         master = tk.Toplevel(_root)
         #master.overrideredirect(True)
         master.geometry("+0+0")
-        #master.attributes("-topmost", True)
+        master.attributes("-topmost", True)
         master.wm_attributes('-type', 'splash')
-        master.after_idle(master.attributes,'-topmost',False)
+        #master.after_idle(master.attributes,'-topmost',False)
         master.protocol("WM_DELETE_WINDOW", self.close)
         tk.Canvas.__init__(self, master, width=width, height=height,
                            highlightthickness=0, bd=0)

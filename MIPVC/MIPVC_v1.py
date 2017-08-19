@@ -117,19 +117,27 @@ def main():
 			b=1;
 		
 		if FuenteV.clicked(pt):
-			execfile('FuenteV.py')
+			#execfile('FuenteV.py')
+			subprocess.Popen(["python", "FuenteV.py"] + sys.argv[1:])
+			sys.exit()
 		if FuenteC.clicked(pt):
 			execfile('FuenteC.py')
+			
 		if BarridoV.clicked(pt):
 			execfile('BarridoV.py')
+			
 		if BarridoC.clicked(pt):
 			execfile('BarridoC.py')
+			
 		if Seno.clicked(pt):
 			execfile('Sinusoidales.py')
+			
 		if Periodicas.clicked(pt):
 			execfile('Periodicas.py')
+			
 		if FuencE.clicked(pt):
 			execfile('FuncEspeciales.py')
+			
 		if Ayuda.clicked(pt):
 			tkMessageBox.showinfo('Ayuda',AyudaMensaje)
 		

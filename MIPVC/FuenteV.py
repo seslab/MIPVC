@@ -316,4 +316,5 @@ def main():
 
 		pt = win.getMouse()
 	win.close()
+	execfile('MIPVC_v1.py')
 main()
