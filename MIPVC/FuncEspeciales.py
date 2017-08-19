@@ -76,19 +76,6 @@ def main():
 	mensaje.setTextColor("black")
 	mensaje.draw(win)
 	
-	A1="--Fuente de Tensión: Permite salida de tensión fija con corriente limite"+"\n"
-	A2="--Fuente de Corriente: Permite salida de corriente fija con tensión limite"+"\n"
-	A3="--Sinusoidal: Permite salida de sinusoidal e inyección de armonicas"+"\n"
-	A4="--Periodicas especiales: Permite salida triangular, diente de sierra y señal cuadrada"+"\n"
-	A5="--Barrido de Tensión: Permite barridos de tensión (Para caracterización de modulos PV)"+"\n"
-	A6="--Barrido de Corriente: Permite barridos de corriente (Para caracterización de modulos PV)"+"\n"
-	A7="--Funciones especiales: Funciones para caracterización de micro inversores"
-	AyudaMensaje=A1+A2+A3+A4+A5+A6+A7
-	pt = win.getMouse()
-	a=0;
-	b=0;
-	hola=Circle(Point(xgrid-5,ygrid-5),5)
-	
 	while not Salir.clicked(pt):	
 			
 		if CMI.clicked(pt):

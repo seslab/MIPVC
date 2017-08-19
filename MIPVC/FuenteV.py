@@ -28,9 +28,9 @@ import subprocess
 global SK
 def main():
 	xgrid=80;
-	ygrid=24;
+	ygrid=48;
 	refx=10;
-	refy=ygrid-4;
+	refy=ygrid-14;
 	width_b=10;
 	heigh_b=2;
 	width_b2=5;
@@ -38,25 +38,40 @@ def main():
 	Tm=0.0005;
 	global Source;
 		
-	win = GraphWin("Fuente de Tensión",width=800, height=240)
+	win = GraphWin("Fuente de Tensión",width=800, height=480)
 	win.setCoords(0,0,xgrid,ygrid) #x1 y1 x2 y2
 	background = Image(Point(xgrid/2,ygrid/2), 'backg.gif')
-	background.draw(win)	
+	background.draw(win)
 	
-	line = Line(Point(xgrid/2, 5), Point(xgrid/2, ygrid))
+	logoTEC = Image(Point(xgrid/2-20,ygrid-5), 'TEC.gif')
+	logoTEC.draw(win)
+	LogoSESLab = Image(Point(xgrid/2+20,ygrid-5), 'SESLab.gif')
+	LogoSESLab.draw(win)
+	
+	line0 = Line(Point(0, refy+2), Point(xgrid,refy+2))
+	line0.setFill("white")
+	line0.setWidth(2)
+	line0.draw(win)
+	
+	line = Line(Point(xgrid/2, refy-15), Point(xgrid/2, refy+2))
 	line.setFill("white")
 	line.setWidth(2)
 	line.draw(win)
 	
-	line2 = Line(Point(0, 10), Point(xgrid, 10))
+	line2 = Line(Point(0, refy-10), Point(xgrid,refy-10))
 	line2.setFill("white")
 	line2.setWidth(2)
 	line2.draw(win)
 	
-	line3 = Line(Point(0, 5), Point(xgrid, 5))
+	line3 = Line(Point(0, refy-15), Point(xgrid, refy-15))
 	line3.setFill("white")
 	line3.setWidth(2)
 	line3.draw(win)
+	
+	line4 = Line(Point(0, refy-20), Point(xgrid, refy-20))
+	line4.setFill("white")
+	line4.setWidth(2)
+	line4.draw(win)
 	
 	
 	##Fuente 1
