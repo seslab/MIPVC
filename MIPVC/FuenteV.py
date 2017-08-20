@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 # -*- coding: utf-850 -*-
 
-#Titulo				:KepcoGestionControl.py
-#Descripción		:Interfaz de usuario y control de fuentes marca Kepco del SESLab.
+#Titulo				:FuenteV.py
+#Descripción		:Interfaz de control de fuentes en modo Tensión.
 #Autor          	:Javier Campos Rojas
-#Fecha            	:Junio-2017
+#Fecha            	:Agosto-2017
 #Versión         	:1.0
 #Notas          	:
 #==============================================================================
@@ -37,7 +37,6 @@ def main():
 	heigh_b2=2.5;
 	Tm=0.0005;
 	global Source;
-	os.system('onboard')	
 	win = GraphWin("Fuente de Tensión",width=800, height=480)
 	win.setCoords(0,0,xgrid,ygrid) #x1 y1 x2 y2
 	background = Image(Point(xgrid/2,ygrid/2), 'backg.gif')
@@ -76,17 +75,11 @@ def main():
 	
 	##Fuente 1
 	Vout1 = Button(win, Point(refx+23,refy-4), width_b2, heigh_b2, "☑")
-	Vout1.rect.setFill("#33CC00")
 	stop1 = Button(win, Point(refx+23,refy-8), width_b2, heigh_b2, "■")
-	stop1.rect.setFill("#C01A19")
 	
 	##Fuente 2
 	Vout2 = Button(win, Point(refx+63,refy-4), width_b2, heigh_b2, "☑")
-	Vout2.rect.setFill("#33CC00")
 	stop2 = Button(win, Point(refx+63,refy-8), width_b2, heigh_b2, "■")
-	stop2.rect.setFill("#C01A19")
-
-
 	
 	connects1 = Button(win, Point(refx+23,refy), width_b, heigh_b, "Conectar")
 	connects1.activate()
@@ -249,7 +242,26 @@ def main():
 	pt = win.getMouse()
 	
 	while not quitButton.clicked(pt):
-
+		V=float(volt_val.getText())
+		C=float(curr_val.getText())
+		V2=float(volt2_val.getText())
+		C2=float(curr2_val.getText())
+		
+		if (C > 4) or (C < -4):
+			curr_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor C no puede ser mayor a 4A o menor a -4A")
+		if (C2 > 4) or (C2 < -4):
+			curr2_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor C no puede ser mayor a 4A o menor a -4A")
+		if (V > 50) or (V < -50):
+			volt_val.setText('0')
+			offs_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor de tensión V máximo "+"\n"+" no puede ser mayor a 50V o menor a -50V")
+		
+		if (V2 > 50) or (V2 < -50) :
+			volt2_val.setText('0')
+			offs2_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor de tensión V máximo "+"\n"+" no puede ser mayor a 50V o menor a -50V")
 		puertos=glob.glob('/dev/tty[U]*')
 		try:
 			puerto1 = puertos[0]
@@ -283,17 +295,21 @@ def main():
 			m1=kepco1.connectport()
 			m2=kepco1.identify()
 			mensaje1.setText(m1 + "\n" + m2)
-			Vout1.deactivate()
-			stop1.deactivate()
-				
+			Vout1.activate()
+			stop1.activate()
+			Vout1.rect.setFill("#33CC00")
+			stop1.rect.setFill("#C01A19")
+	
 		if connects2.clicked(pt):
 			port2=port2_val.getText()
 			kepco2=SK.Source("Fuente2",port2)
 			m1=kepco2.connectport()
 			m2=kepco2.identify()
 			mensaje2.setText(m1 + "\n" + m2)
-			Vout2.deactivate()
-			stop2.deactivate()
+			Vout2.activate()
+			stop2.activate()
+			Vout2.rect.setFill("#33CC00")
+			stop2.rect.setFill("#C01A19")
 		
 		if Vout1.clicked(pt):
 			V=float(volt_val.getText())

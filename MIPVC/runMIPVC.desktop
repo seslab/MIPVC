@@ -1,0 +1,2 @@
+cd /home/SESLab/MIPVC/MIPVC
+python MIPVC_v1.py &

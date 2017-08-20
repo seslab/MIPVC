@@ -28,11 +28,11 @@ import subprocess
 import tkMessageBox
 
 def main():
-	xgrid=50;
-	ygrid=20;
-	refx=xgrid/4;
+	xgrid=80;
+	ygrid=48;
+	refx=xgrid/2;
 	refy=3*ygrid/4-5;
-	width_b=14.5;
+	width_b=16;
 	heigh_b=2.5;
 	Tm=0.0005;
 	puertos=glob.glob('/dev/tty[U]*')
@@ -46,27 +46,34 @@ def main():
 		puerto2 = 'no hay dispositivo'
 	
 		
-	win = GraphWin("Fuentes Kepco SESLab",width=500, height=200)
+	win = GraphWin("Fuentes Kepco SESLab",width=800, height=480)
 	win.master.overrideredirect(True)
 	win.setCoords(0,0,xgrid,ygrid) #x1 y1 x2 y2
 	#win.setBackground('#BCC6CC')
 	background = Image(Point(xgrid/2,ygrid/2), 'backg2.gif')
 	background.draw(win)
-	logoTEC = Image(Point(xgrid/2-12,ygrid-5), 'TEC.gif')
+	logoTEC = Image(Point(xgrid/2-20,ygrid-5), 'TEC.gif')
 	logoTEC.draw(win)
-	LogoSESLab = Image(Point(xgrid/2+12,ygrid-5), 'SESLab.gif')
+	LogoSESLab = Image(Point(xgrid/2+20,ygrid-5), 'SESLab.gif')
 	LogoSESLab.draw(win)
 	
 	##Columna 1
-	CMI = Button(win, Point(refx,refy), width_b, heigh_b, "Caracterización MI")
+	CMI = Button(win, Point(refx-20,refy), width_b, heigh_b, "Caracterización MI")
 	CMI.activate()
-	CalidadE = Button(win, Point(refx,refy-4), width_b, heigh_b, "Calidad de Energia")
-	CalidadE.activate()
 	
 	##Columna 2
-	Salir = Button(win, Point(refx+2*xgrid/4,refy-ygrid/6), width_b, heigh_b, "Salir")
+	CalidadE = Button(win, Point(refx,refy), width_b, heigh_b, "Calidad de Energia")
+	CalidadE.activate()
+	
+	##Columna 3
+	Salir = Button(win, Point(refx+20,refy), width_b, heigh_b, "Salir")
 	Salir.rect.setFill("#C01A19")
 	Salir.activate()
+	
+	Ayuda = Button(win, Point(refx+20,refy-5), width_b, heigh_b, "Ayuda")
+	Ayuda.rect.setFill("#3F51B5")
+	Ayuda.activate()
+	
 	
 		################## Mensaje de lectura ##################
 	mensaje=Text(Point(xgrid/2,3.5),"")
@@ -76,6 +83,11 @@ def main():
 	mensaje.setTextColor("black")
 	mensaje.draw(win)
 	
+	A1="✔Caracterización MI: Permite caracterizar micro inversores para sistemas fotovoltaicos"+"\n"
+	A2="✔Calidad de Energia: Permite realizar mediciones de tensión, corriente y analisis de armonicos de un micro inversor"+"\n"
+	AyudaMensaje=A1+A2
+	
+	pt = win.getMouse()
 	while not Salir.clicked(pt):	
 			
 		if CMI.clicked(pt):
@@ -84,7 +96,11 @@ def main():
 			mensaje.setText("¡Listo!")
 		if CalidadE.clicked(pt):
 			execfile('Analizador.py')
-
+			
+		if Ayuda.clicked(pt):
+			win.master.option_add('*font', 'Helvetica -12')
+			tkMessageBox.showinfo('Ayuda',AyudaMensaje)
+			
 		pt = win.getMouse()
 	win.close()
 main()

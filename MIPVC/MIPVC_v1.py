@@ -25,13 +25,8 @@ import glob ##### para buscar los puertos USB disponibles
 import tkFileDialog
 from EnergyQ import *
 import subprocess
-from easygui import msgbox
-"""
 import tkMessageBox
 
-top=tk.Tk()
-thelp=tk.Toplevel(top)
-"""
 def main():
 	xgrid=80;
 	ygrid=48;
@@ -97,32 +92,28 @@ def main():
 	mensaje.setTextColor("black")
 	mensaje.draw(win)
 	
-	A1="--Fuente de Tensión: Permite salida de tensión fija con corriente limite"+"\n"
-	A2="--Fuente de Corriente: Permite salida de corriente fija con tensión limite"+"\n"
-	A3="--Sinusoidal: Permite salida de sinusoidal e inyección de armonicas"+"\n"
-	A4="--Periodicas especiales: Permite salida triangular, diente de sierra y señal cuadrada"+"\n"
-	A5="--Barrido de Tensión: Permite barridos de tensión (Para caracterización de modulos PV)"+"\n"
-	A6="--Barrido de Corriente: Permite barridos de corriente (Para caracterización de modulos PV)"+"\n"
-	A7="--Funciones especiales: Funciones para caracterización de micro inversores"
+	A1="✔Fuente de Tensión: Permite salida de tensión fija con corriente limite"+"\n"
+	A2="✔Fuente de Corriente: Permite salida de corriente fija con tensión limite"+"\n"
+	A3="✔Sinusoidal: Permite salida de sinusoidal e inyección de armonicas"+"\n"
+	A4="✔Periodicas especiales: Permite salida triangular, diente de sierra y señal cuadrada"+"\n"
+	A5="✔Barrido de Tensión: Permite barridos de tensión (Para caracterización de modulos PV)"+"\n"
+	A6="✔Barrido de Corriente: Permite barridos de corriente (Para caracterización de modulos PV)"+"\n"
+	A7="✔Funciones especiales: Funciones para caracterización de micro inversores"
 	AyudaMensaje=A1+A2+A3+A4+A5+A6+A7
 	pt = win.getMouse()
 	a=0;
 	b=0;
 	
 	#while not Salir.clicked(pt):
-	while not ((xgrid-10<= pt.getX() <=xgrid) and (ygrid-10<= pt.getY() <=ygrid) and a==3 and b==1):
+	while not ((xgrid-10<= pt.getX() <=xgrid) and (ygrid-10<= pt.getY() <=ygrid) and a==1 and b==1):
 		
 		if LogoSESLab.clicked(pt):
-			a=a+1;
+			a=1;
 			b=0
-			mensaje.setText(a)
-			if a > 3 :
-				a=0
 		if logoTEC.clicked(pt):
 			b=1;
-		
 		if FuenteV.clicked(pt):
-			##execfile('FuenteV.py')
+			#execfile('FuenteV.py')
 			subprocess.Popen(["python", "FuenteV.py"] + sys.argv[1:])
 		if FuenteC.clicked(pt):
 			#execfile('FuenteC.py')
@@ -149,8 +140,9 @@ def main():
 			
 		if Ayuda.clicked(pt):
 			#winshowInfo('Ayuda',AyudaMensaje)
-			#tkMessageBox.showinfo('Ayuda',AyudaMensaje,parent=thelp)
-			msgbox(AyudaMensaje,'Ayuda')
+			win.master.option_add('*font', 'Helvetica -12')
+			tkMessageBox.showinfo('Ayuda',AyudaMensaje)
+			#msgbox(AyudaMensaje,'Ayuda')
 		
 		if Salir.clicked(pt):
 			os.system("shutdown now")

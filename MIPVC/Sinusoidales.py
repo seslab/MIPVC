@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 # -*- coding: utf-850 -*-
 
-#Titulo				:KepcoGestionControl.py
-#Descripción		:Interfaz de usuario y control de fuentes marca Kepco del SESLab.
+#Titulo				:Sinusoidales.py
+#Descripción		:Interfaz de control de fuentes para generación de señales sinusoidales y armonicas.
 #Autor          	:Javier Campos Rojas
-#Fecha            	:Junio-2017
+#Fecha            	:Agosto-2017
 #Versión         	:1.0
 #Notas          	:
 #==============================================================================
@@ -30,35 +30,49 @@ import tkMessageBox
 global SK
 def main():
 	xgrid=80;
-	ygrid=28;
+	ygrid=48;
 	refx=10;
-	refy=ygrid-4;
+	refy=ygrid-14;
 	width_b=10;
 	heigh_b=2;
 	width_b2=5;
 	heigh_b2=2.5;
 	Tm=0.0005;
 	global Source;
-		
-	win = GraphWin("Funciones periodicas",width=800, height=280)
+	win = GraphWin("Fuente de Tensión",width=800, height=480)
 	win.setCoords(0,0,xgrid,ygrid) #x1 y1 x2 y2
 	background = Image(Point(xgrid/2,ygrid/2), 'backg.gif')
 	background.draw(win)	
 	
-	line = Line(Point(xgrid/2, 3), Point(xgrid/2, ygrid))
+	logoTEC = Image(Point(xgrid/2-20,ygrid-5), 'TEC.gif')
+	logoTEC.draw(win)
+	LogoSESLab = Image(Point(xgrid/2+20,ygrid-5), 'SESLab.gif')
+	LogoSESLab.draw(win)
+		
+	line = Line(Point(xgrid/2, refy-26), Point(xgrid/2, refy+2))
 	line.setFill("white")
 	line.setWidth(2)
 	line.draw(win)
 	
-	line2 = Line(Point(0, 6.5), Point(xgrid, 6.5))
+	line2 = Line(Point(0, refy+2), Point(xgrid, refy+2))
 	line2.setFill("white")
 	line2.setWidth(2)
 	line2.draw(win)
 	
-	line3 = Line(Point(0, 3), Point(xgrid, 3))
+	line3 = Line(Point(0, refy-18), Point(xgrid, refy-18))
 	line3.setFill("white")
 	line3.setWidth(2)
 	line3.draw(win)
+	
+	line4 = Line(Point(0, refy-22), Point(xgrid, refy-22))
+	line4.setFill("white")
+	line4.setWidth(2)
+	line4.draw(win)
+	
+	line5 = Line(Point(0, refy-26), Point(xgrid, refy-26))
+	line5.setFill("white")
+	line5.setWidth(2)
+	line5.draw(win)
 	
 	
 	##Fuente 1
@@ -94,10 +108,10 @@ def main():
 	
 	
 	
-	cal = Button(win, Point(xgrid/4+10,refy-22.5), width_b, heigh_b, "Calibrar")
+	cal = Button(win, Point(xgrid/4+10,refy-24), width_b, heigh_b, "Calibrar")
 	cal.activate()
 	
-	quitButton = Button(win, Point(3*xgrid/4-10,refy-22.5), width_b, heigh_b, "Salir")
+	quitButton = Button(win, Point(3*xgrid/4-10,refy-24), width_b, heigh_b, "Salir")
 	quitButton.rect.setFill("#C01A19")
 	quitButton.activate()
 	
@@ -350,14 +364,14 @@ def main():
 
 	
 		################## Mensaje de lectura ##################
-	mensaje1=Text(Point(xgrid/4,refy-19),"Fuente 1")
+	mensaje1=Text(Point(xgrid/4,refy-20),"Fuente 1")
 	mensaje1.setFace('arial')
 	mensaje1.setStyle('bold')
 	mensaje1.setSize(10)
 	mensaje1.setTextColor("black")
 	mensaje1.draw(win)
 	
-	mensaje2=Text(Point(3*xgrid/4,refy-19),"Fuente 2")
+	mensaje2=Text(Point(3*xgrid/4,refy-20),"Fuente 2")
 	mensaje2.setFace('arial')
 	mensaje2.setStyle('bold')
 	mensaje2.setSize(10)
@@ -377,8 +391,11 @@ def main():
 		C2=float(curr2_val.getText())
 		of2=float(offs2_val.getText())
 	
-		if (C > 4) or (C < -4) or (C2 > 4) or (C2 < -4):
+		if (C > 4) or (C < -4):
 			curr_val.setText('0')
+			tkMessageBox.showerror("Error", "Valor C no puede ser mayor a 4A o menor a -4A")
+		if (C2 > 4) or (C2 < -4):
+			curr2_val.setText('0')
 			tkMessageBox.showerror("Error", "Valor C no puede ser mayor a 4A o menor a -4A")
 		
 		if (V+of > 50) or (V+of < -50):

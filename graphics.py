@@ -211,9 +211,11 @@ class GraphWin(tk.Canvas):
                  width=200, height=200, autoflush=True):
         assert type(title) == type(""), "Title must be a string"
         master = tk.Toplevel(_root)
+        #master.lift()
         #master.overrideredirect(True)
         master.geometry("+0+0")
-        master.attributes("-topmost", True)
+        #master.attributes("-topmost", True)
+        #master.attributes("-fullscreen", True)
         master.wm_attributes('-type', 'splash')
         #master.after_idle(master.attributes,'-topmost',False)
         master.protocol("WM_DELETE_WINDOW", self.close)
@@ -255,7 +257,6 @@ class GraphWin(tk.Canvas):
 
     def _onKey(self, evnt):
         self.lastKey = evnt.keysym
-
 
     def setBackground(self, color):
         """Set background color of the window"""
