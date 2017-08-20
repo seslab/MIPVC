@@ -37,7 +37,7 @@ def main():
 	heigh_b2=2.5;
 	Tm=0.0005;
 	global Source;
-		
+	os.system('onboard')	
 	win = GraphWin("Fuente de Tensión",width=800, height=480)
 	win.setCoords(0,0,xgrid,ygrid) #x1 y1 x2 y2
 	background = Image(Point(xgrid/2,ygrid/2), 'backg.gif')

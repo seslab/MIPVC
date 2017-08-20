@@ -25,6 +25,7 @@ import glob ##### para buscar los puertos USB disponibles
 import tkFileDialog
 from EnergyQ import *
 import subprocess
+from easygui import msgbox
 """
 import tkMessageBox
 
@@ -123,7 +124,6 @@ def main():
 		if FuenteV.clicked(pt):
 			##execfile('FuenteV.py')
 			subprocess.Popen(["python", "FuenteV.py"] + sys.argv[1:])
-			sys.exit()
 		if FuenteC.clicked(pt):
 			#execfile('FuenteC.py')
 			subprocess.Popen(["python", "FuenteC.py"] + sys.argv[1:])
@@ -148,8 +148,9 @@ def main():
 			subprocess.Popen(["python", "FuncEspeciales.py"] + sys.argv[1:])
 			
 		if Ayuda.clicked(pt):
-			win.showInfo('Ayuda',AyudaMensaje)
+			#winshowInfo('Ayuda',AyudaMensaje)
 			#tkMessageBox.showinfo('Ayuda',AyudaMensaje,parent=thelp)
+			msgbox(AyudaMensaje,'Ayuda')
 		
 		if Salir.clicked(pt):
 			os.system("shutdown now")
