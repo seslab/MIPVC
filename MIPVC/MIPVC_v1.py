@@ -27,7 +27,7 @@ from EnergyQ import *
 import subprocess
 import tkMessageBox
 
-top=tk.tk()
+top=tk.Tk()
 thelp=tk.Toplevel(top)
 
 def main():
