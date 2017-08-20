@@ -25,11 +25,12 @@ import glob ##### para buscar los puertos USB disponibles
 import tkFileDialog
 from EnergyQ import *
 import subprocess
+"""
 import tkMessageBox
 
 top=tk.Tk()
 thelp=tk.Toplevel(top)
-
+"""
 def main():
 	xgrid=80;
 	ygrid=48;
@@ -147,7 +148,8 @@ def main():
 			subprocess.Popen(["python", "FuncEspeciales.py"] + sys.argv[1:])
 			
 		if Ayuda.clicked(pt):
-			tkMessageBox.showinfo('Ayuda',AyudaMensaje,parent=thelp)
+			win.showInfo('Ayuda',AyudaMensaje)
+			#tkMessageBox.showinfo('Ayuda',AyudaMensaje,parent=thelp)
 		
 		if Salir.clicked(pt):
 			os.system("shutdown now")
