@@ -516,11 +516,11 @@ def main():
 		
 		if cal.clicked(pt):
 			execfile('calv.py')
-		
-		if quitButton.clicked(pt):
-			kepco1.stop()
-			kepco2.stop()
 
 		pt = win.getMouse()
+	if Sin1.active==True:
+		kepco1.stop()
+	if Sin2.active==True:
+		kepco1.stop()
 	win.close()
 main()

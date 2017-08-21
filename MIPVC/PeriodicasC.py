@@ -162,7 +162,7 @@ def main():
 			
 		################## Tensión 1 ##################
 		
-	volt=Text(Point(refx,refy-6.5),"Tensión Limite(V): ")
+	volt=Text(Point(refx,refy-6.5),"Tensión(V): ")
 	volt.setFace('arial')
 	volt.setStyle('bold')
 	volt.setSize(10)
@@ -179,7 +179,7 @@ def main():
 
 		################## Corriente 1 ##################
 		
-	curr=Text(Point(refx,refy-9),"Corriente(A): ")
+	curr=Text(Point(refx,refy-9),"Corriente Limite(A): ")
 	curr.setFace('arial')
 	curr.setStyle('bold')
 	curr.setSize(10)
@@ -268,7 +268,7 @@ def main():
 	
 		################## Tensión 2 ##################
 
-	volt2=Text(Point(refx+40,refy-6.5),"Tensión Limite(V): ")
+	volt2=Text(Point(refx+40,refy-6.5),"Tensión(V): ")
 	volt2.setFace('arial')
 	volt2.setStyle('bold')
 	volt2.setSize(10)
@@ -286,7 +286,7 @@ def main():
 
 		################## Corriente 2 ##################
 
-	curr2=Text(Point(refx+40,refy-9),"Corriente(A): ")
+	curr2=Text(Point(refx+40,refy-9),"Corriente Limite(A): ")
 	curr2.setFace('arial')
 	curr2.setStyle('bold')
 	curr2.setSize(10)
@@ -468,7 +468,7 @@ def main():
 			V=float(volt_val.getText())
 			C=float(curr_val.getText())
 			of=float(offs_val.getText())
-			kepco1.WriteSquare(V,f,n,C,of)
+			kepco1.WriteSquareC(C,f,n,V,of)
 			
 		if Saw.clicked(pt):
 			n=float(period_val.getText())
@@ -476,14 +476,14 @@ def main():
 			V=float(volt_val.getText())
 			C=float(curr_val.getText())
 			of=float(offs_val.getText())
-			kepco1.WriteSaw(V,f,n,C,of)
+			kepco1.WriteSawC(C,f,n,V,of)
 		if Triang.clicked(pt):
 			n=float(period_val.getText())
 			f=float(freq_val.getText())
 			V=float(volt_val.getText())
 			C=float(curr_val.getText())
 			of=float(offs_val.getText())
-			kepco1.WriteTrian(V,f,n,C,of)
+			kepco1.WriteTrianC(C,f,n,V,of)
 		
 		if Sqrt2.clicked(pt):
 			n2=float(period2_val.getText())
@@ -491,7 +491,7 @@ def main():
 			V2=float(volt2_val.getText())
 			C2=float(curr2_val.getText())
 			of2=float(offs2_val.getText())
-			kepco1.WriteSquare(V2,f2,n2,C2,y2,of2)
+			kepco1.WriteSquareC(C2,f2,n2,V2,y2,of2)
 			
 		if Saw2.clicked(pt):
 			n2=float(period2_val.getText())
@@ -499,14 +499,14 @@ def main():
 			V2=float(volt2_val.getText())
 			C2=float(curr2_val.getText())
 			of2=float(offs2_val.getText())
-			kepco1.WriteSaw(V2,f2,n2,C2,y2,of2)
+			kepco1.WriteSawC(C2,f2,n2,V2,y2,of2)
 		if Triang2.clicked(pt):
 			n2=float(period2_val.getText())
 			f2=float(freq2_val.getText())
 			V2=float(volt2_val.getText())
 			C2=float(curr2_val.getText())
 			of2=float(offs2_val.getText())
-			kepco1.WriteTrian(V2,f2,n2,C2,y2,of2)
+			kepco1.WriteTrianC(C2,f2,n2,V2,y2,of2)
 		
 		if stop1.clicked(pt):
 			kepco1.stop()
@@ -516,11 +516,11 @@ def main():
 		
 		if cal.clicked(pt):
 			execfile('calv.py')
-		
-		if quitButton.clicked(pt):
-			kepco1.stop()
-			kepco2.stop()
 
 		pt = win.getMouse()
+	if Sqrt.active==True:
+		kepco1.stop()
+	if Sqrt2.active==True:
+		kepco2.stop()
 	win.close()
 main()

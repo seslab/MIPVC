@@ -329,9 +329,9 @@ def main():
 			execfile('calv.py')
 		
 		pt = win.getMouse()
-	if Vout1==True:
+	if Vout1.active==True:
 		kepco1.stop()
-	if Vout2==True:
+	if Vout2.active==True:
 		kepco2.stop()
 	win.close()
 main()

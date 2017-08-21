@@ -335,5 +335,9 @@ def main():
 			kepco2.stop()
 
 		pt = win.getMouse()
+	if Cout1.active==True:
+		kepco1.stop()
+	if Cout2.active==True:
+		kepco2.stop()
 	win.close()
 main()
