@@ -328,7 +328,7 @@ def main():
 			kepco2.stop()
 		
 		if cal.clicked(pt):
-			p = subprocess.Popen(['python', 'calv.py'])
+			execfile('calv.py')
 
 		pt = win.getMouse()
 	win.close()
