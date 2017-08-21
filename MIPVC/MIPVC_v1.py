@@ -114,10 +114,11 @@ def main():
 			b=1;
 		if FuenteV.clicked(pt):
 			#execfile('FuenteV.py')
-			subprocess.Popen(["python", "FuenteV.py"] + sys.argv[1:])
+			subprocess.Popen(["python", "FuenteV.py"])
+			#subprocess.Popen(["python", "FuenteV.py"] + sys.argv[1:])
 		if FuenteC.clicked(pt):
-			#execfile('FuenteC.py')
-			subprocess.Popen(["python", "FuenteC.py"] + sys.argv[1:])
+			execfile('FuenteC.py')
+			#subprocess.Popen(["python", "FuenteC.py"] + sys.argv[1:])
 		if BarridoV.clicked(pt):
 			#execfile('BarridoV.py')
 			subprocess.Popen(["python", "BarridoV.py"] + sys.argv[1:])

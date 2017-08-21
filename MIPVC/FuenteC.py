@@ -23,7 +23,7 @@ import Tkinter as tk
 from urllib2 import urlopen
 import glob ##### para buscar los puertos USB disponibles
 import subprocess
-#from controlTektronix import *
+import tkMessageBox
 
 global SK
 def main():

@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 # -*- coding: utf-850 -*-
 
-#Titulo				:MicroInverterPVCharacterization(MIPVC).py
-#Descripción		:Interfaz de usuario Principal para control de calidad de energia de Micro Inversores.
+#Titulo				:FuncEspeciales.py
+#Descripción		:Permite caracterizar y medir calidad de energia de micro inversores.
 #Autor          	:Javier Campos Rojas
-#Fecha            	:Junio-2017
+#Fecha            	:Agosto-2017
 #Versión         	:1.0
 #Notas          	:
 #==============================================================================
