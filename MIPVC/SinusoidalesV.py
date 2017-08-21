@@ -155,7 +155,7 @@ def main():
 			
 		################## Tensión 1 ##################
 		
-	volt=Text(Point(refx,refy-5.5),"Tensión Limite(V): ")
+	volt=Text(Point(refx,refy-5.5),"Tensión(V): ")
 	volt.setFace('arial')
 	volt.setStyle('bold')
 	volt.setSize(10)
@@ -172,7 +172,7 @@ def main():
 
 		################## Corriente 1 ##################
 		
-	curr=Text(Point(refx,refy-8),"Corriente(A): ")
+	curr=Text(Point(refx,refy-8),"Corriente Limite(A): ")
 	curr.setFace('arial')
 	curr.setStyle('bold')
 	curr.setSize(10)
@@ -278,7 +278,7 @@ def main():
 	
 		################## Tensión 2 ##################
 
-	volt2=Text(Point(refx+40,refy-5.5),"Tensión Limite(V): ")
+	volt2=Text(Point(refx+40,refy-5.5),"Tensión(V): ")
 	volt2.setFace('arial')
 	volt2.setStyle('bold')
 	volt2.setSize(10)
@@ -296,7 +296,7 @@ def main():
 
 		################## Corriente 2 ##################
 
-	curr2=Text(Point(refx+40,refy-8),"Corriente(A): ")
+	curr2=Text(Point(refx+40,refy-8),"Corriente Limite(A): ")
 	curr2.setFace('arial')
 	curr2.setStyle('bold')
 	curr2.setSize(10)
@@ -505,7 +505,7 @@ def main():
 			y2=[int(i) for i in y3]
 			if y2 > 1:
 				kepco2.WriteHarm(V2,f2,n2,C2,y2,of2)
-			else:
+			else:	
 				kepco2.WriteVoltSine(V2,f2,n2,C2,of2)
 		
 		if stop1.clicked(pt):
@@ -516,6 +516,10 @@ def main():
 		
 		if cal.clicked(pt):
 			execfile('calv.py')
+		
+		if quitButton.clicked(pt):
+			kepco1.stop()
+			kepco2.stop()
 
 		pt = win.getMouse()
 	win.close()

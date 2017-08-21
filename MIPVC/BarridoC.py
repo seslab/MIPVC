@@ -290,6 +290,11 @@ def main():
 			rutinaDeltaV(v1_in,v2_in,C,dT,dV,kepco1)
 			Salir.activate()
 			mensaje.setText("Barrido finalizado")
+		
+		if Salir.clicked(pt):
+			kepco1.stop()
+			kepco2.stop()
+			
 		pt = win.getMouse()
 	win.close()
 main()

@@ -329,6 +329,10 @@ def main():
 		
 		if cal.clicked(pt):
 			execfile('calv.py')
+		
+		if quitButton.clicked(pt):
+			kepco1.stop()
+			kepco2.stop()
 
 		pt = win.getMouse()
 	win.close()

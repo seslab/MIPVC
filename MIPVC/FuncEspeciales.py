@@ -100,7 +100,11 @@ def main():
 		if Ayuda.clicked(pt):
 			win.master.option_add('*font', 'Helvetica -12')
 			tkMessageBox.showinfo('Ayuda',AyudaMensaje)
-			
+		
+		if Salir.clicked(pt):
+			kepco1.stop()
+			kepco2.stop()
+		
 		pt = win.getMouse()
 	win.close()
 main()
