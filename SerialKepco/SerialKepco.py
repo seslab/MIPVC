@@ -70,9 +70,9 @@ class Source:
 		funct=[self.V,-self.V];
 		self.voltList=funct;
 		self.k.write('LIST:VOLT ');
-		self.k.write(self.volt_out[i]);
+		self.k.write(self.voltList[0]);
 		self.k.write(',');
-		self.k.write(self.volt_out);
+		self.k.write(self.voltList[0]);
 		self.k.write('\n');
 		self.k.write('LIST:DWEL ');
 		self.k.write(str(1.0/(2*self.f)));

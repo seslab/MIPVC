@@ -150,7 +150,7 @@ def main():
 	freq_val.setSize(10)
 	freq_val.setTextColor("white")
 	freq_val.setFill('#6B6B6B')
-	freq_val.setText('0')
+	freq_val.setText('1')
 	freq_val.draw(win)
 			
 		################## Tensión 1 ##################
@@ -273,7 +273,7 @@ def main():
 	freq2_val.setSize(10)
 	freq2_val.setTextColor("white")
 	freq2_val.setFill('#6B6B6B')
-	freq2_val.setText('0')
+	freq2_val.setText('1')
 	freq2_val.draw(win)
 	
 		################## Tensión 2 ##################
@@ -415,6 +415,21 @@ def main():
 		if (n2 < 0):
 			period2_val.setText('0')
 			tkMessageBox.showerror("Error", "Valor n no puede ser menor a 0 periodos")
+		
+		if (f > 2000):
+			freq_val.setText('1')
+			tkMessageBox.showerror("Error", "Valor de frecuencia no puede ser mayor a 2000Hz")
+		
+		if (f2 > 2000):
+			freq2_val.setText('1')
+			tkMessageBox.showerror("Error", "Valor de frecuencia no puede ser mayor a 2000Hz")
+		
+		if (f == 0):
+			freq_val.setText('1')
+			tkMessageBox.showerror("Error", "Valor de frecuencia no puede ser 0Hz")
+		if (f2 == 0):
+			freq_val.setText('1')
+			tkMessageBox.showerror("Error", "Valor de frecuencia no puede ser 0Hz")
 
 		puertos=glob.glob('/dev/tty[U]*')
 		try:
