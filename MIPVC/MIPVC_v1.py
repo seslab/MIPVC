@@ -113,32 +113,19 @@ def main():
 		if logoTEC.clicked(pt):
 			b=1;
 		if FuenteV.clicked(pt):
-			#execfile('FuenteV.py')
-			subprocess.Popen(["python", "FuenteV.py"])
-			#subprocess.Popen(["python", "FuenteV.py"] + sys.argv[1:])
+			execfile('FuenteV.py')
 		if FuenteC.clicked(pt):
 			execfile('FuenteC.py')
-			#subprocess.Popen(["python", "FuenteC.py"] + sys.argv[1:])
 		if BarridoV.clicked(pt):
-			#execfile('BarridoV.py')
-			subprocess.Popen(["python", "BarridoV.py"] + sys.argv[1:])
-			
+			execfile('BarridoV.py')			
 		if BarridoC.clicked(pt):
-			#execfile('BarridoC.py')
-			subprocess.Popen(["python", "BarridoC.py"] + sys.argv[1:])
-			
+			execfile('BarridoC.py')			
 		if Seno.clicked(pt):
-			#execfile('Sinusoidales.py')
-			subprocess.Popen(["python", "Sinusoidales.py"] + sys.argv[1:])
-			
+			execfile('Sinusoidales.py')
 		if Periodicas.clicked(pt):
-			#execfile('Periodicas.py')
-			subprocess.Popen(["python", "Periodicas.py"] + sys.argv[1:])
-			
+			execfile('Periodicas.py')
 		if FuencE.clicked(pt):
-			#execfile('FuncEspeciales.py')
-			subprocess.Popen(["python", "FuncEspeciales.py"] + sys.argv[1:])
-			
+			execfile('FuncEspeciales.py')
 		if Ayuda.clicked(pt):
 			#winshowInfo('Ayuda',AyudaMensaje)
 			win.master.option_add('*font', 'Helvetica -12')
