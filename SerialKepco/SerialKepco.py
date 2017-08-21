@@ -67,7 +67,7 @@ class Source:
 		self.ofs=ofs;
 		self.k.write('LIST:CLE\n');				
 		self.k.write('LIST:VOLT ');	
-		funct=[self.V,-self.V];
+		funct=[str(self.V),str(-self.V)];
 		self.voltList=funct;
 		self.k.write('LIST:VOLT ');
 		self.k.write(self.voltList[0]);
