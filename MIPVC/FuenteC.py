@@ -256,12 +256,10 @@ def main():
 			tkMessageBox.showerror("Error", "Valor C no puede ser mayor a 4A o menor a -4A")
 		if (V > 50) or (V < -50):
 			volt_val.setText('0')
-			offs_val.setText('0')
 			tkMessageBox.showerror("Error", "Valor de tensión V máximo "+"\n"+" no puede ser mayor a 50V o menor a -50V")
 		
 		if (V2 > 50) or (V2 < -50) :
 			volt2_val.setText('0')
-			offs2_val.setText('0')
 			tkMessageBox.showerror("Error", "Valor de tensión V máximo "+"\n"+" no puede ser mayor a 50V o menor a -50V")
 			
 		puertos=glob.glob('/dev/tty[U]*')
